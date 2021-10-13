@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeSet;
 
 public class NTuple {
 
@@ -49,6 +50,22 @@ public class NTuple {
 
     public int indexAt(int i) {
         return nTuple[i];
+    }
+
+    public String toString() {
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        TreeSet<NTuplePattern> orderedKeys = new TreeSet<>(patternStats.keySet());
+        for (NTuplePattern key : orderedKeys) {
+            SummaryStatisticsPlus stats = patternStats.get(key);
+            stringBuilder.append(key).append("\t ")
+                         .append(stats.getN()).append("\t ")
+                         .append(stats.getMean()).append("\t ")
+                         .append(stats.getStandardDeviation()).append("\n");
+        }
+
+        return stringBuilder.toString();
     }
 
 }
