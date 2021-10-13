@@ -21,19 +21,20 @@ public class Tests {
         NTuplePattern nTuplePatternA = new NTuplePattern(randomPoint, new NTuple(1,2));
         NTuplePattern nTuplePatternB = new NTuplePattern(randomPoint, new NTuple(1,2));
 
-        NTuple tuple = new NTuple(0,1,2,3);
-        tuple.addSample(randomPoint, 14);
-        tuple.addSample(randomPoint, 2);
-        tuple.addSample(randomPoint, 2);
-        tuple.addSample(searchSpace.randomPoint(), 2);
+        NTuple tuple = new NTuple(0, 3, 1);
 
+        for (int i = 0; i < 1000; i++) {
+            tuple.addSample(searchSpace.randomPoint(), PRNG.nextDouble());
+        }
+
+        System.out.println("tuple = \n" + tuple);
         //tuple.reset();
 
 
         System.out.println("tuple.numEntries() = " + tuple.numEntries());
         System.out.println("tuple.numSamples() = " + tuple.numSamples());
 
-        System.out.println("tuple.getPatterns() = " + tuple.getPatternStats());
+        // System.out.println("tuple.getPatterns() = " + tuple.getPatternStats());
     }
 
 }
