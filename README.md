@@ -73,6 +73,9 @@ complete example, with the evaluation function.
 
 ## Downloads
 
+Precompiled JARs with all dependencies included are available in the 
+[releases](https://github.com/Acemad/alphaNTBEA/releases) page.
+
 ## To-Do
 
 - General code optimization.
