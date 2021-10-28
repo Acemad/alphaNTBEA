@@ -1,26 +1,25 @@
 # alphaNTBEA
 
-alphaNTBEA is a refactored version of Simon Lucas' [NTBEA implementation](https://github.com/SimonLucas/ntbea). 
-It is similarly written in Java, and includes some additional features and enhancements to the original implementation.
+alphaNTBEA is a refactored version of Simon Lucas' [NTBEA implementation](https://github.com/SimonLucas/ntbea) that 
+includes some additional features and enhancements. Similarly, it is written in Java.
 
 ## What is NTBEA?
 
 NTBEA stands for N-Tuple Bandits Evolutionary Algorithm, which is an algorithm for finding solutions to noisy 
 combinatorial optimization problems. NTBEA was designed initially for optimizing the parameters of game-playing agents,
 a problem with inherently noisy fitness functions. NTBEA works by incrementally building a fitness landscape model using
-an underlying N-Tuple system that keeps track of the value estimate of a number of combinations of parameters (N-Tuples).
+an underlying N-Tuple system that keeps track of the value estimates of a number of combinations of parameters (N-Tuples).
 With each evaluation the model's accuracy improves and steers search closer to an optimal solution. NTBEA's most appealing
-feature is its ability to find solutions while staying sample-efficient. For more details please consult the 
-[original paper](https://arxiv.org/abs/1802.05991)
-
+feature is its ability to find good solutions while staying sample-efficient. For more details please consult the 
+[original paper](https://arxiv.org/abs/1802.05991).
 
 ## alphaNTBEA's Features
 
 - The ability to use arbitrary sized N-Tuples (Not limited to only 1,2,3, or N-Tuples).
-- The ability to save the evolution and N-Tuple statistics externally after each run.
+- The ability to save the evolution statistics and N-Tuple statistics externally after each run.
 - Multi-threaded fitness evaluation (in case of more than a single sample).
 - Centralized RNG.
-- Simple fluent-interface API.
+- Simple fluent interface API.
 
 ## Usage Example
 
@@ -47,16 +46,16 @@ public class Example {
         
         /* 
         Initialize and configure an NTBEA instance: 
-            - After passing the searchSpace to init, the next parameters of init denote the lengths of N-Tuples to 
-              consider, in this case: 1,2,3,4, and 5-Tuples
+            - After passing the searchSpace to init, the next parameters (a vararg) of init denote the lengths of 
+              N-Tuples to consider, in this case: 1,2,3,4, and 5-Tuples
             - The next method calls specify number of neighbours, exploration coefficient, index mutation prob, and 
-              enables unique neighbours
+              enables unique neighbours. More configuration calls exist.
         */
         NTBEA ntbea = NTBEA.init(searchSpace, 1, 2, 3, 4, 5)
                            .neighbours(100).kExplore(2)    
                            .indexMutationProb(0.5).distinctNeighbors(); 
         
-        // Launch a single NTBEA run using maxM evaluation function for 200 generations using a single thread.
+        // Launch a single NTBEA run using the maxM evaluation function for 200 generations using a single thread.
         ntbea.run(MaxMTest::maxM, 200, 1, true);
         
         // Export the evolution reports
@@ -76,9 +75,9 @@ complete example, with the evaluation function.
 
 ## To-Do
 
-- General code optimization
-- JUnit tests
-- More examples
+- General code optimization.
+- JUnit tests.
+- More problem domains and examples.
 
 ## Contributing
 
