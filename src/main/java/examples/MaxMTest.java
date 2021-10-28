@@ -14,7 +14,7 @@ public class MaxMTest {
     public static void main(String[] args) {
 
         // Define the search space
-        SearchSpace searchSpace = new SearchSpace(7,5,7,5,7);
+        SearchSpace searchSpace = new SearchSpace(5,5,5,5,5);
         // Compute the optimal value
         optimalValue = maxMOptimalValue(searchSpace);
 
@@ -27,8 +27,8 @@ public class MaxMTest {
         ntbea.run(MaxMTest::maxM, 200,1, true);
 
         // Save evolution and nTuple reports
-        ntbea.saveEvolutionStatsCSVReport("./test.csv");
-        ntbea.saveReport("./report.txt");
+        ntbea.saveEvolutionStatsCSVReport("./EvoStats.csv");
+        ntbea.saveReport("./NTupleReport.txt");
     }
 
     /**
