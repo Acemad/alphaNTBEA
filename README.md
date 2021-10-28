@@ -59,11 +59,14 @@ public class Example {
         ntbea.run(MaxMTest::maxM, 200, 1, true);
         
         // Export the evolution reports
-        ntbea.saveEvolutionStatsCSVReport("./evoStats.csv");
-        ntbea.saveReport("./tupleReport.txt");
+        ntbea.saveEvolutionStatsCSVReport("./EvoStats.csv");
+        ntbea.saveReport("./NTupleReport.txt");
     }
 }
 ```
+An example of the evolution reports obtained after the above run can be found through these links: 
+- [EvoStats.csv](https://github.com/Acemad/alphaNTBEA/blob/main/MaxMReports/EvoStats.csv) 
+- [NTupleReport.txt](https://github.com/Acemad/alphaNTBEA/blob/main/MaxMReports/NTupleReport.txt)
 
 To use NTBEA for a different problem domain, simply implement the related evaluation function as a static method taking
 a point from the search space (`int[]`) and returning the fitness value as a `double`. In the `run` method of NTBEA pass
