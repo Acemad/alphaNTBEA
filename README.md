@@ -21,6 +21,11 @@ feature is its ability to find good solutions while staying sample-efficient. Fo
 - Centralized RNG.
 - Simple fluent interface API.
 
+## Downloads
+
+Precompiled JARs with all dependencies included are available in the
+[releases](https://github.com/Acemad/alphaNTBEA/releases) page.
+
 ## Usage Example
 
 In the example bellow, NTBEA is used to find a solution for the noisy max m problem. First, a 
@@ -73,11 +78,6 @@ a point from the search space (`int[]`) and returning the fitness value as a `do
 the method reference of the new evaluation function as the 1st argument. Please refer to 
 [MaxMTest](https://github.com/Acemad/alphaNTBEA/blob/main/src/main/java/examples/MaxMTest.java) class for the 
 complete example, with the evaluation function.
-
-## Downloads
-
-Precompiled JARs with all dependencies included are available in the 
-[releases](https://github.com/Acemad/alphaNTBEA/releases) page.
 
 ## To-Do
 
