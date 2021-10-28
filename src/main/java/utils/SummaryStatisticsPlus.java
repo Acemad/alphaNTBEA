@@ -1,3 +1,5 @@
+package utils;
+
 import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 import org.apache.commons.math3.util.FastMath;
 
@@ -6,6 +8,10 @@ import org.apache.commons.math3.util.FastMath;
  */
 public class SummaryStatisticsPlus extends SummaryStatistics {
 
+    /**
+     * Compute the standard error
+     * @return The Standard Error value
+     */
     public double getStandardError() {
         return getStandardDeviation() / FastMath.sqrt(getN());
     }

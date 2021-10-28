@@ -1,8 +1,14 @@
+package utils;
+
 import org.apache.commons.rng.UniformRandomProvider;
+import org.apache.commons.rng.sampling.CollectionSampler;
+import org.apache.commons.rng.sampling.PermutationSampler;
 import org.apache.commons.rng.sampling.distribution.ContinuousSampler;
 import org.apache.commons.rng.sampling.distribution.GaussianSampler;
 import org.apache.commons.rng.sampling.distribution.ZigguratNormalizedGaussianSampler;
 import org.apache.commons.rng.simple.RandomSource;
+
+import java.util.Collection;
 
 /**
  * A PRNG wrapper used as a central random number generator. The underlying generator can be changed by
@@ -61,6 +67,17 @@ public class PRNG {
      */
     public static boolean nextBoolean() {
         return random.nextBoolean();
+    }
+
+    /**
+     * Samples k unique items from a number of 0...n elements
+     * @param k The number of elements to retrieve
+     * @param n The total number of elements
+     * @return An array containing k elements randomly sampled from n elements
+     */
+    public static int[] sampleKFromN(int k, int n) {
+        PermutationSampler sampler = new PermutationSampler(random, n, k);
+        return sampler.sample();
     }
 
 }

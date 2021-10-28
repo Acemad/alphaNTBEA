@@ -1,18 +1,21 @@
+package space;
+
+import utils.PRNG;
 
 /**
- * A class that models a discrete search space using a search space specification, which is an int array a number of
- * elements as large as the number of dimensions of the search space, and each element representing the size (max number
- * of values) of the dimension it represents.
+ * A class representing a discrete search space. The search space is defined using a search space specification, which
+ * is a one dimensional int array that represents the number of dimensions of the search space with its own length.
+ * The value of each component of the specification determines the size of a dimension in the search space.
+ * @author Acemad
  */
 public class SearchSpace {
 
-    // The search space specification: length = number of dimensions, elements = size of the dimension
+    // The search space specification: length = number of dimensions, elements' value = size of the dimension
     private final int[] specification;
 
     /**
      * Create a SearchSpace using the given specification.
-     *
-     * @param specification
+     * @param specification An int array representing the search space
      */
     public SearchSpace(int... specification) {
 
@@ -23,40 +26,8 @@ public class SearchSpace {
     }
 
     /**
-     * Returns the number of dimensions of this SearchSpace
-     *
-     * @return
-     */
-    public int dimensions() {
-        return specification.length;
-    }
-
-    /**
-     * Returns the size of a dimension, given its index in the specification
-     *
-     * @param dimension
-     * @return
-     */
-    public int dimensionSize(int dimension) {
-        return specification[dimension];
-    }
-
-    /**
-     * Computes and returns the size of this SearchSpace, which is the number of all possible points in the SearchSpace
-     *
-     * @return
-     */
-    public long size() {
-        long size = 1;
-        for (int dimensionSize : specification)
-            size *= dimensionSize;
-        return size;
-    }
-
-    /**
      * Generates a random point from this SearchSpace.
-     *
-     * @return
+     * @return A random point belonging to this search space
      */
     public int[] randomPoint() {
         int[] randomPoint = new int[specification.length];
@@ -71,8 +42,8 @@ public class SearchSpace {
      * is the SearchSpace's size.
      * Note: Taken from sml's NTBEA implementation, extended to long values
      *
-     * @param pointIndex
-     * @return
+     * @param pointIndex The index of the point to retrieve
+     * @return A point from the search space with the given index
      */
     public int[] getPoint(long pointIndex) {
 
@@ -92,8 +63,8 @@ public class SearchSpace {
      * size is the SearchSpace's size.
      * Note: Taken from sml's NTBEA implementation, extended to long values
      *
-     * @param point
-     * @return
+     * @param point A point in this search space
+     * @return Index of the point
      */
     public long indexOfPoint(int[] point) {
         long factor = 1;
@@ -103,5 +74,33 @@ public class SearchSpace {
             factor *= specification[i];
         }
         return total;
+    }
+
+    /**
+     * Computes and returns the size of this SearchSpace, which is the number of all possible points in it
+     * @return The number of points in this search space
+     */
+    public long size() {
+        long size = 1;
+        for (int dimensionSize : specification)
+            size *= dimensionSize;
+        return size;
+    }
+
+    /**
+     * Returns the number of dimensions of this SearchSpace
+     * @return The number of dimensions in this search space
+     */
+    public int dimensions() {
+        return specification.length;
+    }
+
+    /**
+     * Returns the size of a dimension, given its index in the specification
+     * @param dimensionIndex The index of the dimension in the specification
+     * @return The size of the queried dimension
+     */
+    public int dimensionSize(int dimensionIndex) {
+        return specification[dimensionIndex];
     }
 }
