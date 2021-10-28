@@ -24,11 +24,14 @@ feature is its ability to find solutions while staying sample-efficient. For mor
 
 ## Usage Example
 
-In the example bellow, NTBEA is used to find a solution for the noisy max m problem. First, a SearchSpace instance is
-created using a SearchSpace specification (An array of integers, with length equalling the number of dimensions, and
-the elements denoting the size of each dimension). Next, an NTBEA instance is initialized and configured using the
-static factory method and parameter initializers. Afterwards, we launch a single NTBEA run using the provided evaluation
-function, and save the necessary report.
+In the example bellow, NTBEA is used to find a solution for the noisy max m problem. First, a 
+[SearchSpace](https://github.com/Acemad/alphaNTBEA/blob/main/src/main/java/space/SearchSpace.java) instance is
+created using a [SearchSpace](https://github.com/Acemad/alphaNTBEA/blob/main/src/main/java/space/SearchSpace.java) 
+specification (An array of integers, with length equalling the number of dimensions, and
+the elements representing the size of each dimension). Next, an 
+[NTBEA](https://github.com/Acemad/alphaNTBEA/blob/main/src/main/java/evo/NTBEA.java) instance is initialized and 
+configured using the `init` static factory method and parameter initializers. Afterwards, we launch a single NTBEA run 
+using the provided evaluation function, and save the necessary reports.
 
 ```java
 import evo.NTBEA;
@@ -39,14 +42,19 @@ public class Example {
 
     public static void main(String[] args) {
 
-        // Define the search space
+        // Define the search space: A max m problem with 5 dimensions and m = 5
         SearchSpace searchSpace = new SearchSpace(5, 5, 5, 5, 5);
         
-        // Initialize and configure an NTBEA instance. After passing the searchSpace to init, the next parameters 
-        // denote the lengths of N-Tuples to consider, in this case: 1,2,3,4, and 5-Tuples
+        /* 
+        Initialize and configure an NTBEA instance: 
+            - After passing the searchSpace to init, the next parameters of init denote the lengths of N-Tuples to 
+              consider, in this case: 1,2,3,4, and 5-Tuples
+            - The next method calls specify number of neighbours, exploration coefficient, index mutation prob, and 
+              enables unique neighbours
+        */
         NTBEA ntbea = NTBEA.init(searchSpace, 1, 2, 3, 4, 5)
-                           .neighbours(100).kExplore(2)    // Specify number of neighbours, and exploration coefficient 
-                           .indexMutationProb(0.5).distinctNeighbors(); // Specify index mutation prob, and avoid duplicate neighbours
+                           .neighbours(100).kExplore(2)    
+                           .indexMutationProb(0.5).distinctNeighbors(); 
         
         // Launch a single NTBEA run using maxM evaluation function for 200 generations using a single thread.
         ntbea.run(MaxMTest::maxM, 200, 1, true);
@@ -58,6 +66,12 @@ public class Example {
 }
 ```
 
+To use NTBEA for a different problem domain, simply implement the related evaluation function as a static method taking
+a point from the search space (`int[]`) and returning the fitness value as a `double`. In the `run` method of NTBEA pass
+the method reference of the new evaluation function as the 1st argument. Please refer to 
+[MaxMTest](https://github.com/Acemad/alphaNTBEA/blob/main/src/main/java/examples/MaxMTest.java) class for the 
+complete example, with the evaluation function.
+
 ## Downloads
 
 ## To-Do
@@ -68,4 +82,4 @@ public class Example {
 
 ## Contributing
 
-
+All contributions are welcome!
