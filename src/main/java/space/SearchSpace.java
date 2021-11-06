@@ -84,6 +84,8 @@ public class SearchSpace {
         long size = 1;
         for (int dimensionSize : specification)
             size *= dimensionSize;
+        // Possible overflow: return maximum long value
+        if (size < 0) return Long.MAX_VALUE;
         return size;
     }
 

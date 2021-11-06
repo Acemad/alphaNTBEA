@@ -24,7 +24,7 @@ public class NTBEA {
     private final NTupleSystem nTupleSystem;
 
     // The number of neighbours to generate
-    private int neighbours = 100;
+    private long neighbours = 100;
     // While generating neighbours, do not allow duplicates
     private boolean distinctNeighbours = false;
     // The number of evaluate samples we take for a single solution
@@ -94,7 +94,7 @@ public class NTBEA {
             currentPoint = initialPoint;
 
         // Set the number of neighbour to generate
-        neighbours = Math.min(neighbours, (int) (getSearchSpace().size() / 4));
+        neighbours = Math.min(neighbours, getSearchSpace().size() / 4);
 
         // 2. Start the evolution.
         for (int gen = 1; gen <= numGenerations; gen++) {
@@ -239,7 +239,7 @@ public class NTBEA {
      * @param numNeighbours The number of neighbours
      * @return The current NTBEA instance for chaining
      */
-    public NTBEA neighbours(int numNeighbours) {
+    public NTBEA neighbours(long numNeighbours) {
         this.neighbours = numNeighbours;
         return this;
     }
